@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
@@ -32,7 +31,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
 
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions
