@@ -23,6 +23,9 @@ namespace Business.Constants
         public static string UpdateUser = "User updated successfully!";
         public static string DeleteUser = "User deleted successfully!";
         public static string CarDidNotReturned = "Car is still in using!";
-        public static string CarRented ="Car rented successfully!";
+        public static string CarRented = "Car rented successfully!";
+        public static string AddCarImage = "Car image added successfully!";
+        public static string UpdateCarImage = "Car image updated successfully!";
+        public static string DeleteCarImage = "Car image deleted successfully!";
     }
 }
