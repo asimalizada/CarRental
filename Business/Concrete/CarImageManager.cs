@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Business.Abstract;
 using Business.Constants;
+using Business.Utilities.BusinessRules;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
@@ -38,7 +39,7 @@ namespace Business.Concrete
             ShowDefaultImage(result, carId);
             return new SuccessDataResult<List<CarImage>>(result);
         }
-        IResult ShowDefaultImage(List<CarImage> result, int carId)
+        private IResult ShowDefaultImage(List<CarImage> result, int carId)
         {
             if (!result.Any())
             {
@@ -46,7 +47,7 @@ namespace Business.Concrete
                 {
                     CarId = carId,
                     Date = DateTime.Now,
-                    ImagePath = Environment.CurrentDirectory + @"\Images\DefaultCar.jpg"
+                    ImagePath = Environment.CurrentDirectory + @"\uploads\DefaultCar.jpg"
                 };
                 result.Add(defaultCarImage);
             }
@@ -56,12 +57,30 @@ namespace Business.Concrete
 
         public IResult Add(IFormFile file, CarImage carImage)
         {
+            IResult result = BusinessRulesHelper.Check(CheckIfCarImageLimitExceeded(carImage.CarId));
+            if (!result.Success)
+            {
+                return result;
+            }
+
             carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
 
             return new SuccessResult(Messages.AddCarImage);
         }
+
+        private IResult CheckIfCarImageLimitExceeded(int carId)
+        {
+            var result = _carImageDal.GetAll(c => c.CarId == carId);
+            if (result.Count == 5)
+            {
+                return new ErrorResult(Messages.CarImageLimit);
+            }
+
+            return new SuccessResult();
+        }
+
 
         public IResult Update(IFormFile file, CarImage carImage)
         {

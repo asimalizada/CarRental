@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework.Contexts
@@ -10,7 +11,10 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Color> Colors { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Rental> Rentals { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Entities.Concrete.User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<Core.Entities.Concrete.User> UsersAuthorization { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

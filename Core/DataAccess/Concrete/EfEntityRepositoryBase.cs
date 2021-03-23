@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Core.DataAccess.Abstract;
 using Core.Entities;
+using Core.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
