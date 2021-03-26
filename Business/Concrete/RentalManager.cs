@@ -7,6 +7,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using Entities.ComplexTypes;
 using Entities.Concrete;
 
 namespace Business.Concrete
@@ -64,6 +65,16 @@ namespace Business.Concrete
         public IDataResult<Rental> GetById(int id)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id));
+        }
+
+        public IDataResult<List<CarRentalDetails>> GetCarRentalDetails()
+        {
+            return new SuccessDataResult<List<CarRentalDetails>>(_rentalDal.GetCarRentalDetails());
+        }
+
+        public IDataResult<List<RentalDetails>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetails>>(_rentalDal.GetRentalDetails());
         }
 
         private bool CheckIfCarReturned(Rental rental)
