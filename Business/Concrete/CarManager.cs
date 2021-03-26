@@ -6,6 +6,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using Entities.ComplexTypes;
 using Entities.Concrete;
 
 namespace Business.Concrete
@@ -53,6 +54,11 @@ namespace Business.Concrete
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
+        }
+
+        public IDataResult<List<CarDetails>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetails>>(_carDal.GetCarDetails());
         }
     }
 }

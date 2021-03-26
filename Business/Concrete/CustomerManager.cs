@@ -6,6 +6,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using Entities.ComplexTypes;
 using Entities.Concrete;
 
 namespace Business.Concrete
@@ -48,6 +49,11 @@ namespace Business.Concrete
         public IDataResult<Customer> GetById(int id)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.UserId == id));
+        }
+
+        public IDataResult<List<CustomerDetails>> GetCustomerDetails()
+        {
+            return new SuccessDataResult<List<CustomerDetails>>(_customerDal.GetCustomerDetails());
         }
     }
 }
