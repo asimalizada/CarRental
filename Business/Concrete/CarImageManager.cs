@@ -9,6 +9,7 @@ using Core.Utilities.Helpers;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using Entities.ComplexTypes;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 
@@ -98,6 +99,11 @@ namespace Business.Concrete
             FileHelper.Delete(carImage.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult(Messages.DeleteCarImage);
+        }
+
+        public IDataResult<List<CarImageDetails>> GetCarImageDetails()
+        {
+            return new SuccessDataResult<List<CarImageDetails>>(_carImageDal.GetCarImageDetails());
         }
     }
 }
