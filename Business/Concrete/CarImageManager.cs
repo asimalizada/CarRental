@@ -85,8 +85,10 @@ namespace Business.Concrete
 
         public IResult Update(IFormFile file, CarImage carImage)
         {
-            var oldPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\\..\\..\\wwwroot")) +
-                          _carImageDal.Get(c => c.Id == carImage.Id).ImagePath;
+            var oldPath = 
+                Path.GetFullPath
+                    (Path.Combine(AppContext.BaseDirectory, @"..\\..\\..\\wwwroot")) +
+                    _carImageDal.Get(c => c.Id == carImage.Id).ImagePath;
 
             carImage.ImagePath = FileHelper.Update(oldPath, file);
             carImage.Date = DateTime.Now;

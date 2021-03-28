@@ -2,10 +2,10 @@
 
 namespace Entities.ComplexTypes
 {
-    public class CarImageDetails : IDto
+    public class CarImageDetails : IDto  /// Database object
     {
         public int Id { get; set; }
-        public string CarName { get; set; }
+        public string CarName { get; set; }  
         public string ColorName { get; set; }
         public string BrandName { get; set; }
         public int ModelYear { get; set; }

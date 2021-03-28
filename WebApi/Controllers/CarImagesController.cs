@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
 
@@ -78,7 +75,7 @@ namespace WebApi.Controllers
 
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result.Message); // 200 OK
             }
 
             return BadRequest(result.Message);

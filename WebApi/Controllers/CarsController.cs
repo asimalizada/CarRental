@@ -32,7 +32,7 @@ namespace WebApi.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbybrandid")]
+        [HttpGet("getbybrand")]
         public IActionResult GetListByBrandId(int brandId)
         {
             var result = _carService.GetCarsByBrandId(brandId);
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbycolorid")]
+        [HttpGet("getbycolor")]
         public IActionResult GetListByColorId(int colorId)
         {
             var result = _carService.GetCarsByColorId(colorId);
